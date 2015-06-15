@@ -1,0 +1,31 @@
+实现功能：
+
+1、学生功能——学生个人登录密码修改
+2、教师功能——教师个人登录密码修改
+
+
+关键代码设计：
+
+<input type="password" class="input-medium" id="password"  name="newpwd" />
+//在相应的输入框中输入用户所要设置的新密码，并传给value
+
+<input type="submit" class="btn btn-primary" value="保存">
+//保存按钮，保存用户所设置的新密码，并传到后台数据库中保存
+
+<form id="edit-profile" class="form-horizontal" method="post" action="{:U('Admin/Index/password')}"/>
+//运用post方法，根据所设置的路径，将用户的新密码保存到相应的数据库中
+
+//修改密码的具体函数实现
+public function password(){
+	$uid=session("uid");//从浏览器中获取用户id
+	$pwd=I('newpwd','','md5');//获取用户的新密码，并用md5加密
+	$data=array(
+		'password'=>$pwd
+	);//将新密码保存在数组中
+		
+	if(M("user")->where(array("id"=>$uid))->save($data)){//根据用户的id，找到数据库中相应用户的记录，保存新密码
+		$this->success('修改密码成功!');//弹窗提示
+	}else{
+		$this->error('修改失败，请重新修改！');//弹窗提示
+	}
+}
