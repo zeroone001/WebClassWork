@@ -1,0 +1,34 @@
+经过同学们的讨论研究与分工，我主要负责的部分就是将数据库中学生和老师的个人信息展现到前台页面。
+
+首先我了将后台代码嵌入到index.html中：
+<foreach name='student' item='v'>
+					<div class="account-details">
+					
+						<span class="account-name">{$v.username}</span>
+						
+						<span class="account-role">{$v.content}</span>
+						
+						<span class="account-actions">
+							{$v.number}
+						</span>
+					
+					</div> <!-- /account-details -->
+				</foreach>
+其中
+$v.username代表了学生信息中的个人姓名，$v.content代表了专业，$v.number代表了该学生的学号。
+然后是indext.html
+<foreach name='teacher' item='v'>
+					<div class="account-details">
+					
+						<span class="account-name">{$v.username}</span>
+						
+						<span class="account-role">{$v.content}</span>
+						
+						<span class="account-actions">
+							{$v.sex}
+						</span>
+
+					</div> <!-- /account-details -->
+				</foreach>
+同理，其中$v.username代表了老师的姓名，$v.content代表了老师的任课系，$v.sex则代表了老师的性别。
+
